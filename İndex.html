@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnerCharm - İç Giyimde Zarafet ve Şıklık</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000000;
+            color: #fff;
+        }
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #000000;
+            padding: 1rem 0;
+        }
+        .logo {
+            width: 200px;
+            height: auto;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 1rem 0 0 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 1rem;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #d2b48c;
+        }
+        .hero {
+            background: url('https://i.hizliresim.com/b0v5p1p.jpg') no-repeat center center/cover;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero__content {
+            text-align: center;
+            color: #fff;
+        }
+        .hero__title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero__description {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .icon-nav-arrow-down {
+            margin-top: 1rem;
+        }
+        .grid-outer {
+            padding: 2rem 1rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 0 auto;
+        }
+        .product-item {
+            background-color: #333;
+            text-align: center;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .product-item__image {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-top: 130%;
+            overflow: hidden;
+        }
+        .product-item__image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-item__title,
+        .product-item__price__holder {
+            display: none;
+        }
+        .quick-add__button {
+            background-color: #d2b48c;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .quick-add__button:hover {
+            background-color: #b08b5b;
+        }
+        .sale-box {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #d2b48c;
+            color: #fff;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        .preorder-box {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #3498db;
+            color: #fff;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        footer {
+            background-color: #000000;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .footer-info {
+            margin-top: 2rem;
+        }
+        .footer-info h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d2b48c;
+            margin-bottom: 1rem;
+        }
+        .footer-info p,
+        .footer-info ul {
+            margin-bottom: 1rem;
+        }
+        .footer-info ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .footer-info ul li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-info ul li a {
+            color: #d2b48c;
+            text-decoration: none;
+        }
+        .footer__block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: left;
+            padding: 2rem 0;
+        }
+        .footer__block__title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .footer__quicklinks {
+            list-style: none;
+            padding: 0;
+        }
+        .footer__quicklinks li {
+            margin-bottom: 0.5rem;
+        }
+        .footer__quicklinks li a {
+            color: #d2b48c;
+            text-decoration: none;
+        }
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            background: #d2b48c;
+            color: #000;
+            padding: 0.5rem 0;
+            font-size: 1rem;
+        }
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body>
+    <div class="marquee"><span>İlk siparişinizde %10 İNDİRİM için abone olun!</span></div>
+    <header>
+        <img src="https://i.hizliresim.com/rr28u2o.jpg" alt="InnerCharm Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="#home">Ana Sayfa</a></li>
+                <li><a href="#products">Ürünler</a></li>
+                <li><a href="https://penia3001.github.io/ileti-im.github.io/">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="hero-overlay">
+            <div class="hero__content">
+                <h1 class="hero__title">IntimaCharm</h1>
+                <p class="hero__description">"Her Adımda Gücü, Zarafeti ve Sınır Ruhunu Kucaklayın."</p>
+                <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-nav-arrow-down" viewBox="0 0 24 24">
+                    <path d="m6 9 6 6 6-6" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </div>
+        </div>
+    </section>
+    <section class="grid-outer" data-products-grid="">
+        <div class="grid" id="CollectionLoop">
+            <div class="grid-item product-item product-item--centered product-item--outer-text product-item--has-quickbuy" id="product-item--template--17556704100604__main-8260971364604" data-product-grid-item="" data-grid-item="">
+                <div class="product-item__image double__image" data-product-image="">
+                    <img src="https://i.hizliresim.com/tqbvlxc.jpg" alt="Kızıl tulum">
+                    <quick-add-product>
+                        <div class="quick-add__holder" data-quick-add-holder="8260971364604">
+                            <button class="quick-add__button caps" type="button"
+                       onclick="location.href='https://penia3001.github.io/Payment-innercharm.github.io/'">
+                                <span class="btn__text">Satın Al</span>
+                                <span class="btn__plus"></span>
+                                <span class="btn__added">&nbsp;</span>
+                                <span class="btn__loader">
+                                    <svg height="18" width="18" class="svg-loader">
+                                        <circle r="7" cx="9" cy="9"></circle>
+                                        <circle stroke-dasharray="87.96459430051421 87.96459430051421" r="7" cx="9" cy="9"></circle>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </quick-add-product>
+                </div>
+            </div>
+            <div class="grid-item product-item product-item--centered product-item--outer-text product-item--has-quickbuy" id="product-item--template--17556704100604__main-7952519168252" data-product-grid-item="" data-grid-item="">
+                <div class="product-item__image double__image" data-product-image="">
+                    <img src="https://i.hizliresim.com/teq6ht3.jpg" alt="Buz Harikalar Diyarı">
+                    <quick-add-product>
+                        <div class="quick-add__holder" data-quick-add-holder="7952519168252">
+                            <button class="quick-add__button caps" type="button" onclick="location.href='https://penia3001.github.io/Payment-innercharm.github.io/'">
+                                <span class="btn__text">Satın Al</span>
+                                <span class="btn__plus"></span>
+                                <span class="btn__added">&nbsp;</span>
+                                <span class="btn__loader">
+                                    <svg height="18" width="18" class="svg-loader">
+                                        <circle r="7" cx="9" cy="9"></circle>
+                                        <circle stroke-dasharray="87.96459430051421 87.96459430051421" r="7" cx="9" cy="9"></circle>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </quick-add-product>
+                </div>
+            </div>
+            <div class="grid-item product-item product-item--centered product-item--outer-text product-item--has-quickbuy" id="product-item--template--17556704100604__main-8260967530748" data-product-grid-item="" data-grid-item="">
+                <div class="product-item__image double__image" data-product-image="">
+                    <img src="https://i.hizliresim.com/pmy4dfw.jpg" alt="Haziran">
+                    <quick-add-product>
+                        <div class="quick-add__holder" data-quick-add-holder="8260967530748">
+                            <button class="quick-add__button caps" type="button" onclick="location.href='https://penia3001.github.io/Payment-innercharm.github.io/'">
+                                <span class="btn__text">Satın Al</span>
+                                <span class="btn__plus"></span>
+                                <span class="btn__added">&nbsp;</span>
+                                <span class="btn__loader">
+                                    <svg height="18" width="18" class="svg-loader">
+                                        <circle r="7" cx="9" cy="9"></circle>
+                                        <circle stroke-dasharray="87.96459430051421 87.96459430051421" r="7" cx="9" cy="9"></circle>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </quick-add-product>
+                </div>
+            </div>
+            <div class="grid-item product-item product-item--centered product-item--outer-text product-item--has-quickbuy" data-product-grid-item="" data-grid-item="">
+                <div class="product-item__image double__image" data-product-image="">
+                    <img src="https://i.hizliresim.com/bo2xgxw.jpg" alt="Ek Ürün 1">
+                    <quick-add-product>
+                        <div class="quick-add__holder">
+                            <button class="quick-add__button caps" type="button" onclick="location.href='https://penia3001.github.io/Payment-innercharm.github.io/'">
+                                <span class="btn__text">Satın Al</span>
+                                <span class="btn__plus"></span>
+                                <span class="btn__added">&nbsp;</span>
+                                <span class="btn__loader">
+                                    <svg height="18" width="18" class="svg-loader">
+                                        <circle r="7" cx="9" cy="9"></circle>
+                                        <circle stroke-dasharray="87.96459430051421 87.96459430051421" r="7" cx="9" cy="9"></circle>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </quick-add-product>
+                </div>
+            </div>
+            <div class="grid-item product-item product-item--centered product-item--outer-text product-item--has-quickbuy" data-product-grid-item="" data-grid-item="">
+                <div class="product-item__image double__image" data-product-image="">
+                    <img src="https://i.hizliresim.com/dk305qd.jpg" alt="Ek Ürün 2">
+                    <quick-add-product>
+                        <div class="quick-add__holder">
+                            <button class="quick-add__button caps" type="button" onclick="location.href='https://penia3001.github.io/Payment-innercharm.github.io/'">
+                                <span class="btn__text">Satın Al</span>
+                                <span class="btn__plus"></span>
+                                <span class="btn__added">&nbsp;</span>
+                                <span class="btn__loader">
+                                    <svg height="18" width="18" class="svg-loader">
+                                        <circle r="7" cx="9" cy="9"></circle>
+                                        <circle stroke-dasharray="87.96459430051421 87.96459430051421" r="7" cx="9" cy="9"></circle>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </quick-add-product>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-info container">
+            <div class="about-us">
+                <h3>InnerCharm Hakkında</h3>
+                <p>InnerCharm, iç giyimde zarafet ve şıklığı ön planda tutan bir markadır. Her bir ürünümüzde kalite ve konforu bir araya getiriyoruz. Müşteri memnuniyeti ve güvenli alışveriş ilkeleriyle hareket ediyoruz.</p>
+            </div>
+            <div class="contact">
+                <h3>İletişim</h3>
+                <ul>
+                    <li>Telefon: <a href="https://api.whatsapp.com/send?phone=905426825003">+90 542 682 50 03</a></li>
+                    <li>Email: <a href="mailto:info@innercharm.com">info@innercharm.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__block footer__block--menu" style="--desktop-width: 33.333333%;">
+            <h2 class="h5 footer__block__title">Bilgi</h2>
+            <ul class="footer__quicklinks unstyled">
+                <li><a href="https://penia3001.github.io/Our-story.github.io/">Hakkında</a></li>
+                <li><a href="https://penia3001.github.io/-ade.github.io/">İade politikası</a></li>
+                <li><a href="https://penia3001.github.io/ileti-im.github.io/">İletişim</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 InnerCharm & R3DTEAM. Tüm hakları saklıdır. | <a href="#">Gizlilik Politikası</a> | <a href="#">Kullanım Koşulları</a></p>
+        </div>
+    </footer>
+</body>
+</html>
